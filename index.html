@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>
+    Home
+</title>
+
+<style>
+    .main{
+        position: relative;
+        padding: 1rem;
+        height: 800px;
+        width: 100%;
+        border: 1px solid black;
+        background-color: aliceblue;
+    }
+    .box{
+        width: 250px;
+        height: 250px;
+        background-color: red;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        /* transform: translate(-50%, -50%); */
+    }
+    .box__kutu{
+        position: relative;
+    }
+</style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Test your reaction</h1>
+        <h3>Click on the boxes and circles as quickly as you can</h3>
+
+        <h6 id="reactiontime">Reaction Time: 0</h6>
+    </header>
+    <div class="main">
+
+
+        <div class="box" id="box"></div>
+    
+    </div>
+
+
+<script >
+    "use strict";
+    let start = new Date().getTime();
+    var box = document.getElementById("box"); 
+    function shape() {
+
+       box.style.display = "block";
+       
+        start = new Date().getTime();
+        renkdegis();
+      }
+
+      function delay(){
+        setTimeout(shape, Math.random() + 1000);
+
+      }
+
+
+      function renkdegis(){
+        var randomcolor = Math.floor(Math.random()*16777215).toString(16);
+
+        let randomx = Math.floor(Math.random() * 50) + 10;
+        let randomy = Math.floor(Math.random() * 50) + 10;
+        let randomh = Math.floor(Math.random() * 250) + 100;
+        let randomr = Math.floor(Math.random() * 50) + 50;
+       
+        
+
+        
+
+        if (randomh < 150 || randomr > 250) {
+            box.style.borderRadius = randomr + "%";
+        }
+
+        box.style.backgroundColor = "#" + randomcolor;
+        box.style.height = randomh + "px";
+        box.style.width = randomh + "px";
+        box.style.top = randomy + "%";
+        box.style.left = randomx + "%";
+        box.style.translate(0 * 0 == "-" + randomx + "%", 0 * 0 == "-" + randomy + "%"); 
+      }
+      
+
+    box.addEventListener("click", function() {  
+
+       
+
+        let end = new Date().getTime();
+
+        let zamanfarki = (end - start) / 1000;
+
+        document.getElementById("reactiontime").innerHTML = zamanfarki + "seconds"; 
+
+        box.style.display = "none";
+
+        delay();
+
+        console.log(randomy + " " + randomx) ;
+        
+       
+
+    })
+
+    shape();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
